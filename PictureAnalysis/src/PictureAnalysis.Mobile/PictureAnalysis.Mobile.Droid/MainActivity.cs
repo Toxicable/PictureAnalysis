@@ -12,7 +12,7 @@ using Android.Provider;
 
 namespace PictureAnalysis.Mobile.Droid
 {
-    [Activity(Label = "PictureAnalysis.Mobile", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "TagSnap", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         private static readonly string fmcDirectory =
