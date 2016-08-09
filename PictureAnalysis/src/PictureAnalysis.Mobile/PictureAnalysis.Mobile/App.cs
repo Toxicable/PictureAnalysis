@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using PCLStorage;
-using PictureAnalysis.Mobile.Services;
-using PictureAnalysis.Mobile.Services.UserSettings;
+﻿using PictureAnalysis.Mobile.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,19 +8,17 @@ namespace PictureAnalysis.Mobile
 {
     public class App : Application
     {
-        private UserSettings _settings;
 
-        private readonly Xamarin.Forms.Color _white = Xamarin.Forms.Color.White;
-        private readonly Xamarin.Forms.Color _black = Xamarin.Forms.Color.Black;
+        private static readonly Xamarin.Forms.Color _white = Xamarin.Forms.Color.White;
+        private static readonly Xamarin.Forms.Color _black = Xamarin.Forms.Color.Black;
 
         public App()
         {
             
-            //MainPage = new MainPage1();
-            //he root page of your application
+
             MainPage = new ContentPage
             {
-                BackgroundColor = _white,
+                BackgroundColor = _black,
                 Padding = new Thickness(0, Device.OS == TargetPlatform.iOS ? 20 : 0, 0, 0),
                 Content = new StackLayout
                 {
@@ -51,18 +46,17 @@ namespace PictureAnalysis.Mobile
         }
 
         
-        public void ToggleColorMode()
+        public async Task ToggleColorMode()
         {
-            _settings.Settings.IsNightMode = !_settings.Settings.IsNightMode;
-            if (IsNightMode())
+            if (MainPage.BackgroundColor == Xamarin.Forms.Color.Black)
             {
-                MainPage.BackgroundColor = _white;
-                description.TextColor = _black;
+                MainPage.BackgroundColor = Xamarin.Forms.Color.White;
+                description.TextColor = Xamarin.Forms.Color.Black;                
             }
             else
             {
-                MainPage.BackgroundColor = _black;
-                description.TextColor = _white;
+                MainPage.BackgroundColor = Xamarin.Forms.Color.Black;
+                description.TextColor = Xamarin.Forms.Color.White;                
             }
         }
 
@@ -81,22 +75,18 @@ namespace PictureAnalysis.Mobile
         }
         readonly Image image = new Image() { WidthRequest = 300 };
 
-        public Label description = new Label() {
+        public Label description = new Label()
+        {
             HorizontalTextAlignment = TextAlignment.Center,
-            TextColor = Xamarin.Forms.Color.Black };
+            TextColor = _black,
+            FontSize = 20
+        };
 
         public event Action ShouldTakePicture = () => { };
-
-
-        private bool IsNightMode()
-        {
-            return MainPage.BackgroundColor == _black;
-        }
 
         protected override void OnStart()
         {
             // Handle when your app starts
-            _settings = new UserSettings();
         }
 
         protected override void OnSleep()

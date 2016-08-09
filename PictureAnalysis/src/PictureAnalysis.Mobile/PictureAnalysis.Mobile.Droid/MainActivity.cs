@@ -9,6 +9,7 @@ using Android.OS;
 using PictureAnalysis.Mobile;
 using Android.Content;
 using Android.Provider;
+using System.IO;
 
 namespace PictureAnalysis.Mobile.Droid
 {
@@ -34,13 +35,18 @@ namespace PictureAnalysis.Mobile.Droid
                 var intent = new Intent(MediaStore.ActionImageCapture);
                 intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(file));
 
+
                 StartActivityForResult(intent, 0);
             };
+
 
         }
 
         override protected void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+
+            
+
             var compressedPath = fmcDirectory + "compressed.jpg";
             var fileContent = ImageProcessing.CompressImage(file.Path, compressedPath);
 

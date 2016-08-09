@@ -26,6 +26,8 @@ namespace PictureAnalysis.Mobile.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::PictureAnalysis.Mobile.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::PictureAnalysis.Mobile.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_in = global::PictureAnalysis.Mobile.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_out = global::PictureAnalysis.Mobile.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_grow_fade_in_from_bottom = global::PictureAnalysis.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
