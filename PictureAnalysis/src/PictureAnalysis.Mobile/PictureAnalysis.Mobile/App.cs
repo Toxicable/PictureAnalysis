@@ -78,7 +78,7 @@ namespace PictureAnalysis.Mobile
         public Label description = new Label()
         {
             HorizontalTextAlignment = TextAlignment.Center,
-            TextColor = _black,
+            TextColor = _white,
             FontSize = 20
         };
 

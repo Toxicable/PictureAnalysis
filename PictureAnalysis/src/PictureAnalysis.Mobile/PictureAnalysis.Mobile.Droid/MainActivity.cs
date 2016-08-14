@@ -10,6 +10,8 @@ using PictureAnalysis.Mobile;
 using Android.Content;
 using Android.Provider;
 using System.IO;
+using Xamarin.Facebook;
+using Java.Security;
 
 namespace PictureAnalysis.Mobile.Droid
 {
@@ -29,6 +31,20 @@ namespace PictureAnalysis.Mobile.Droid
             LoadApplication(new App());
 
             var app = Xamarin.Forms.Application.Current as App;
+
+            FacebookSdk.SdkInitialize(this.ApplicationContext);
+
+            PackageInfo info = this.PackageManager.GetPackageInfo("com.fabian.TagSnap", PackageInfoFlags.Signatures);
+
+            foreach ( Android.Content.PM.Signature signiture in info.Signatures)
+            {
+                var md = MessageDigest.GetInstance("SHA");
+                md.Update(signiture.ToByteArray());
+                string key = Convert.ToBase64String(md.Digest());
+                Console.WriteLine("KeyHash: ", key);
+            }
+
+
 
             app.ShouldTakePicture += () =>
             {
