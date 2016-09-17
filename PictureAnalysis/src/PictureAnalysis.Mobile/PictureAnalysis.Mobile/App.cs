@@ -8,28 +8,19 @@ namespace PictureAnalysis.Mobile
 {
     public class App : Application
     {
-
-        private static readonly Xamarin.Forms.Color _white = Xamarin.Forms.Color.White;
-        private static readonly Xamarin.Forms.Color _black = Xamarin.Forms.Color.Black;
-
         public App()
-        {
-            
-
+        { 
             MainPage = new ContentPage
             {
-                BackgroundColor = _black,
+                BackgroundColor = Xamarin.Forms.Color.Black,
                 Padding = new Thickness(0, Device.OS == TargetPlatform.iOS ? 20 : 0, 0, 0),
-                Content = new StackLayout
+                Content = new ScrollView
                 {
+                    Content =  new StackLayout
+                    {
 
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                         new Button {
-                            Text = "Toggle night mode",
-                            Command = new Command( o => ToggleColorMode()),
-                            BackgroundColor = Xamarin.Forms.Color.Silver
-                        },
                         new Button {
                             Text = "Take a picture!",
                             Command = new Command( o => ShouldTakePicture()),
@@ -38,27 +29,12 @@ namespace PictureAnalysis.Mobile
                         image,
                         description
 
+                        }
                     }
                 }
-                
-                
             };
         }
 
-        
-        public async Task ToggleColorMode()
-        {
-            if (MainPage.BackgroundColor == Xamarin.Forms.Color.Black)
-            {
-                MainPage.BackgroundColor = Xamarin.Forms.Color.White;
-                description.TextColor = Xamarin.Forms.Color.Black;                
-            }
-            else
-            {
-                MainPage.BackgroundColor = Xamarin.Forms.Color.Black;
-                description.TextColor = Xamarin.Forms.Color.White;                
-            }
-        }
 
         public async Task ShowImage(string filepath, byte[] imageBytes)
         {
@@ -78,7 +54,7 @@ namespace PictureAnalysis.Mobile
         public Label description = new Label()
         {
             HorizontalTextAlignment = TextAlignment.Center,
-            TextColor = _white,
+            TextColor = Xamarin.Forms.Color.White,
             FontSize = 20
         };
 
